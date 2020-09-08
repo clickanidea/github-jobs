@@ -1,13 +1,13 @@
 <template>
-<div>
-  <div class="loader"></div>
-</div>
+  <div>
+    <div class="loader"></div>
+  </div>
 </template>
 
 <script>
 export default {
-name: 'Spinner',
-}
+  name: "Spinner",
+};
 </script>
 
 <style scoped>
@@ -18,10 +18,15 @@ name: 'Spinner',
   width: 50px;
   height: 50px;
   animation: spin 1s linear infinite;
+  margin: auto;
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 </style>
