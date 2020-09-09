@@ -132,9 +132,10 @@
           <Spinner></Spinner>
         </div>
         <div
-          class="min-h-2 shadow font-list text-gray-800 p-3 bg-white flex justify-start mb-3"
+          class="min-h-2 shadow font-list text-gray-800 p-3 bg-white flex justify-start mb-3 cursor-pointer"
           v-for="job in pageOfItems"
           :key="job.id"
+          @click="onJobPosting(job.id)"
         >
           <div class="align-middle hidden md:block">
             <progressive-img
@@ -158,7 +159,7 @@
               >
                 {{ job.type }}
               </button>
-              <div class="flex">
+              <div class="flex justify-center">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 32 32"
@@ -269,18 +270,34 @@ export default {
           if (this.totJobs === 0) {
             this.jobMessage = "No results for your search criteria";
           } else {
+            sessionStorage.setItem("jobs", JSON.stringify(this.jobs));
+            sessionStorage.setItem("location", JSON.stringify(this.location));
+            sessionStorage.setItem("searchTop", JSON.stringify(this.searchTop));
             if (this.totJobs > 5) {
               this.pag = true;
             } else {
               this.pag = false;
             }
+            sessionStorage.setItem("pag", JSON.stringify(this.pag));
           }
           this.isLoading = false;
         });
     },
+    onJobPosting(id) {
+      if (id) {
+        this.$router.push({ path: `/${id}` });
+      }
+    },
   },
-  created() {
-    this.fetchJobs();
+  mounted() {
+    if (sessionStorage.getItem("jobs")) {
+      this.jobs = JSON.parse(sessionStorage.getItem("jobs"));
+      this.location = JSON.parse(sessionStorage.getItem("location"));
+      this.searchTop = JSON.parse(sessionStorage.getItem("searchTop"));
+      this.pag = JSON.parse(sessionStorage.getItem("pag"));
+    } else {
+      this.fetchJobs();
+    }
   },
   computed: {
     filteredJobs: function() {
