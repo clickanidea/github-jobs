@@ -1,13 +1,11 @@
 <template>
-  <div
-    class="job w-full font-body pt-8 bg-gray-200 h-full sm:px-4 md:px-16 lg:px-24"
-  >
+  <div class="job w-full font-body pt-8 bg-gray-200 h-full px-10 md:px-24">
     <div class="mb-8 font-bold text-2xl text-gray-800">
       Github
       <span class="font-hairline">Jobs</span>
     </div>
     <div class="block md:flex">
-      <div class="w-1/3">
+      <div class="w-full md:w-1/3">
         <div class="flex items-center mb-6 cursor-pointer" @click="goBack">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -20,7 +18,7 @@
               fill="#1E86FF"
             ></path>
           </svg>
-          <p class="text-blue-500">
+          <p class="text-blue-500 text-sm md:text-base">
             back to search
           </p>
         </div>
@@ -29,9 +27,11 @@
         </div>
         <div class="markdown" v-html="howToApply"></div>
       </div>
-      <div class="w-2/3">
+      <div class="w-full md:w-2/3">
         <div class="flex">
-          <p class="text-2xl font-semibold text-indigo-800 mr-2">{{ title }}</p>
+          <p class="text-base md:text-2xl font-semibold text-indigo-800 mr-2">
+            {{ title }}
+          </p>
           <button
             class="bg-transparent text-indigo-700 text-xs py-1 px-2 border-2 font-bold  border-indigo-700 rounded"
           >
@@ -69,7 +69,7 @@
           </div>
 
           <div>
-            <p class="text-xl font-semibold text-indigo-800">
+            <p class="text-base md:text-xl font-semibold text-indigo-800">
               {{ company }}
             </p>
             <div class="flex mt-2 items-start">
@@ -107,7 +107,6 @@ export default {
   },
   data() {
     return {
-      isLoading: false,
       createdAt: null,
       title: null,
       company: null,
@@ -116,8 +115,6 @@ export default {
       howToApply: null,
       imageUrl: null,
       jobType: null,
-      url:
-        "https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions/",
       job: {},
     };
   },
@@ -129,7 +126,6 @@ export default {
       this.job = JSON.parse(sessionStorage.getItem("jobs")).filter(
         (jobs) => jobs.id === this.id
       );
-      this.isLoading = true;
       this.createdAt = this.job[0].created_at;
       this.title = this.job[0].title;
       this.company = this.job[0].company;
@@ -157,7 +153,12 @@ export default {
   padding-bottom: 0.125rem;
 }
 .markdown {
-  @apply text-indigo-800 text-sm w-4/5 leading-normal break-words;
+  @apply text-indigo-800 text-xs w-4/5 leading-normal break-words;
+}
+@screen md {
+  .markdown {
+    @apply text-indigo-800 text-sm w-4/5 leading-normal break-words;
+  }
 }
 .markdown >>> * + * {
   @apply mt-0 mb-4;

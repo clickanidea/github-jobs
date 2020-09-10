@@ -1,6 +1,6 @@
 <template>
   <div
-    class="home w-full font-body pt-8 bg-gray-200 h-full sm:px-4 md:px-16 lg:px-24"
+    class="home w-full font-body pt-8 bg-gray-200 h-full px-4 md:px-16 lg:px-24"
   >
     <!-- start header -->
     <div class="mb-8 font-bold text-2xl text-gray-800">
@@ -269,6 +269,7 @@ export default {
           this.totJobs = Object.keys(this.jobs).length;
           if (this.totJobs === 0) {
             this.jobMessage = "No results for your search criteria";
+            sessionStorage.clear();
           } else {
             sessionStorage.setItem("jobs", JSON.stringify(this.jobs));
             sessionStorage.setItem("location", JSON.stringify(this.location));
