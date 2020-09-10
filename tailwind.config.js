@@ -13,4 +13,5 @@ module.exports = {
     require("tailwindcss-debug-screens"),
     require("@tailwindcss/typography"),
   ],
+
 };

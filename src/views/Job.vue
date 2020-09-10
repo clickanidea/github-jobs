@@ -53,10 +53,10 @@
             {{ jobPosted(createdAt) }}
           </p>
         </div>
-        <div class="items-center mt-2 flex">
+        <div class="items-center mt-2 flex mb-4">
           <div class="align-middle">
-            <progressive-img
-              class="w-24 mt-6 rounded mr-4 object-none object-center"
+            <img
+              class="w-24 mt-6 rounded mr-4 object-scale-up"
               :src="imageUrl"
               v-if="imageUrl != null"
             />
@@ -159,6 +159,13 @@ export default {
   .markdown {
     @apply text-indigo-800 text-sm w-4/5 leading-normal break-words;
   }
+  .markdown >>> ul {
+    @apply text-sm pl-8 list-disc;
+  }
+
+  .markdown >>> ol {
+    @apply text-sm pl-8 list-decimal;
+  }
 }
 .markdown >>> * + * {
   @apply mt-0 mb-4;
@@ -228,11 +235,11 @@ export default {
 }
 
 .markdown >>> ul {
-  @apply text-sm pl-8 list-disc;
+  @apply text-xs pl-8 list-disc;
 }
 
 .markdown >>> ol {
-  @apply text-sm pl-8 list-decimal;
+  @apply text-xs pl-8 list-decimal;
 }
 
 .markdown >>> kbd {

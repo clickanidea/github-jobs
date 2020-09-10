@@ -1,6 +1,6 @@
 <template>
   <div
-    class="home w-full font-body pt-8 bg-gray-200 h-full px-4 md:px-16 lg:px-24"
+    class="home w-full font-body pt-8 bg-gray-200 h-full  px-10 md:px-16 lg:px-24"
   >
     <!-- start header -->
     <div class="mb-8 font-bold text-2xl text-gray-800">
@@ -138,8 +138,8 @@
           @click="onJobPosting(job.id)"
         >
           <div class="align-middle hidden md:block">
-            <progressive-img
-              class="w-24 mt-6 rounded mr-2 object-none object-center"
+            <img
+              class="w-24 mt-6 rounded mr-2 object-scale-down"
               :src="job.company_logo"
               v-if="job.company_logo != null"
             />
